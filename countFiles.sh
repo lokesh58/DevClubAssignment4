@@ -21,7 +21,9 @@ fi
 count=0
 
 for file in ${dir}/$ext; do
-	(( count++ ))
+	if [ "file" != "${dir}/$ext" ]; then
+		(( count++ ))
+	fi
 done
 
 echo $count
