@@ -1,16 +1,17 @@
 #!/bin/bash
 
+declare -r exit_code=1;
 dir=.
 ext=*.*
 
 if [ $# -eq 0 ]; then
-	exit -1
+	exit $exit_code
 else
 	dir=$1;
 	if [ ! -d "$dir" ]; then
-		exit -1
+		exit $exit_code
 	elif [ ! -r "$dir" ]; then
-		exit -1
+		exit $exit_code
 	fi
 
 	if [ $# -gt 1 ]; then
