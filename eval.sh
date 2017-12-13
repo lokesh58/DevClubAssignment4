@@ -2,6 +2,11 @@
 
 declare -r exit_code=1
 
+if [ $# -eq 0 ]; then
+	# echo "Insufficient arguments"
+	exit $exit_code
+fi
+
 file="$1"
 
 if [ ! -r $file ]; then
