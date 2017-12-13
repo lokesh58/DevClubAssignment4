@@ -7,7 +7,7 @@ user=$2
 OIFS="$IFS"
 
 if [ ! -r "$file" ]; then
-	echo "File doesn't exist or not readable"
+	# echo "File doesn't exist or not readable"
 	exit $exit_code
 fi
 
@@ -15,6 +15,8 @@ if [ $# -lt 2 ]; then
 	# echo "Insufficient Arguments"
 	exit $exit_code
 fi
+
+op="Invalid Username"
 
 while read line; do
 	# echo $line
@@ -27,11 +29,11 @@ while read line; do
 
 	read -r -a attr <<< "$line"
 	if [ "${attr[0]}" == "$user" ]; then
-		echo "${attr[4]}"
-		exit 0
+		op="${attr[4]}"
+		break
 	fi
 
 	IFS=$OIFS
 done < "$file"
 
-echo "Invalid Username"
+echo $op
