@@ -1,6 +1,13 @@
 #!/bin/bash
 
+declare -r exit_code=1
+
 file="$1"
+
+if [ ! -r $file ]; then
+	# echo "File not readable or doesn't exist"
+	exit $exit_code
+fi
 
 ans=0
 
