@@ -6,6 +6,11 @@ file=$1
 user=$2
 OIFS="$IFS"
 
+if [ ! -r "$file" ]; then
+	echo "File doesn't exist or not readable"
+	exit $exit_code
+fi
+
 if [ $# -lt 2 ]; then
 	# echo "Insufficient Arguments"
 	exit $exit_code
