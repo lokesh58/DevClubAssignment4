@@ -4,13 +4,13 @@ dir=.
 ext=*.*
 
 if [ $# -eq 0 ]; then
-	return -1
+	exit -1
 else
 	dir=$1;
 	if [ ! -d "$dir" ]; then
-		return -1
+		exit -1
 	elif [ ! -r "$dir" ]; then
-		return -1
+		exit -1
 	fi
 
 	if [ $# -gt 1 ]; then
