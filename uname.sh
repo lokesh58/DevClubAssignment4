@@ -30,7 +30,7 @@ while read line; do
 	read -r -a attr <<< "$line"
 	if [ "${attr[0]}" == "$user" ]; then
 		op="${attr[4]}"
-		break
+		# break  # removing break will help us to check format of whole file
 	fi
 
 	IFS=$OIFS
