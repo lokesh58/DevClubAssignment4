@@ -11,8 +11,9 @@ dir1=$1
 dir2=$2
 display=0
 
-if [ $# -eq 3 ]; then
+if [ $# -eq 4 ]; then
 	display=$3
+	app=$4
 fi
 
 if [ ! -d "$dir1" -o ! -r "$dir1" ]; then
@@ -55,10 +56,18 @@ for file in *; do
 			mkdir ${dir2}/$file
 		fi
 		cd $dir0
-		$0 ${dir1}/$file ${dir2}/$file 1
+		if [ $display -eq 0 ]; then
+			arg4=$file
+		else
+			arg4=$app/$file
+		fi
+		$0 ${dir1}/$file ${dir2}/$file 1 $arg4
 		cd $dir1
 	elif [ ! -f "${dir2}/$file" ]; then 
 		cp ${dir1}/$file ${dir2}
+		if [ $display -eq 1 ]; then
+			echo "$app/$file"
+		fi
 	fi
 done
 
@@ -82,10 +91,18 @@ for file in *; do
 			mkdir ${dir1}/$file
 		fi
 		cd $dir0
-		$0 ${dir2}/$file ${dir1}/$file 1
+		if [ $display -eq 0 ]; then
+			arg4=$file
+		else
+			arg4=$app/$file
+		fi
+		$0 ${dir2}/$file ${dir1}/$file 2 $arg4
 		cd $dir2
 	elif [ ! -f "${dir1}/$file" ]; then
 		cp ${dir2}/$file ${dir1}
+		if [ $display -eq 2 ]; then
+			echo "$app/$file"
+		fi
 	fi
 done
 cd $dir0
