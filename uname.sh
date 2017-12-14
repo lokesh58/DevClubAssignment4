@@ -20,7 +20,7 @@ op="Invalid Username"
 
 while read line; do
 	# echo $line
-	if [[ "$line" != *":x:"*":"*":"*":"*":"* ]]; then
+	if [[ "$line" != *":x:"*":"*":"*":"*":"* ]]; then #Pattern matching
 		# echo "Incorrect format"
 		exit $exit_code
 	fi

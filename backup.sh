@@ -15,7 +15,7 @@ if [ ! -d "$dir1" -o ! -r "$dir1" ]; then
 	exit $exit_code
 else
 	cd $dir1
-	dir1=$PWD
+	dir1=$PWD  # This way we get actual path if relative path was given
 	# echo "$dir1"
 	cd $dir0
 fi
@@ -25,7 +25,7 @@ if [ ! -d "$dir2" -o ! -r "$dir2" ]; then
 	exit $exit_code
 else
 	cd $dir2
-	dir2=$PWD
+	dir2=$PWD  # This way we get actual path if relative path was given
 	# echo "$dir2"
 	cd $dir0
 fi
