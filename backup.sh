@@ -9,12 +9,10 @@ fi
 dir0=$PWD
 dir1=$1
 dir2=$2
-dir3=$dir0
-root=1
+display=0
 
 if [ $# -eq 3 ]; then
-	dir3=$3
-	root=0
+	display=$3
 fi
 
 if [ ! -d "$dir1" -o ! -r "$dir1" ]; then
@@ -37,10 +35,19 @@ else
 	cd $dir0
 fi
 
-declare -a dir1todir2
-declare -a dir2todir1
-
 cd $dir1
+
+if [ $display -eq 0 ]; then
+	echo "Files copied from $1 to $2 are:"
+	for file in *; do
+		if [ ! -d "$file" ]; then
+			if [ ! -e "${dir2}/$file" ]; then
+				echo "$file"
+			fi
+		fi
+	done
+fi
+
 for file in *; do
 	# echo "$file"
 	if [ -d "$file" ]; then
@@ -48,7 +55,7 @@ for file in *; do
 			mkdir ${dir2}/$file
 		fi
 		cd $dir0
-		$0 ${dir1}/$file ${dir2}/$file
+		$0 ${dir1}/$file ${dir2}/$file 1
 		cd $dir1
 	elif [ ! -f "${dir2}/$file" ]; then 
 		cp ${dir1}/$file ${dir2}
@@ -56,6 +63,18 @@ for file in *; do
 done
 
 cd $dir2
+
+if [ $display -eq 0 ]; then
+	echo "Files copied from $2 to $1 are:"
+	for file in *; do
+		if [ ! -d "$file" ]; then
+			if [ ! -e "${dir1}/$file" ]; then
+				echo "$file"
+			fi
+		fi
+	done
+fi
+
 for file in *; do
 	# echo "$file"
 	if [ -d "$file" ]; then
@@ -63,7 +82,7 @@ for file in *; do
 			mkdir ${dir1}/$file
 		fi
 		cd $dir0
-		$0 ${dir2}/$file ${dir1}/$file
+		$0 ${dir2}/$file ${dir1}/$file 1
 		cd $dir2
 	elif [ ! -f "${dir1}/$file" ]; then
 		cp ${dir2}/$file ${dir1}
