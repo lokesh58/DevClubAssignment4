@@ -33,6 +33,9 @@ fi
 cpdir1todir2() {
 	cd $1
 	for file in *; do
+		if [ "$file" == "*" ]; then
+			return
+		fi
 		if [ -d "$file" ]; then
 			if [ ! -d "$2/$file" ]; then
 				mkdir $2/$file
