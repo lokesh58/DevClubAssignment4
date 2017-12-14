@@ -2,7 +2,7 @@
 
 declare -r exit_code=1;
 dir=.
-ext=*.*
+ext=*
 
 if [ $# -eq 0 ]; then
 	exit $exit_code
@@ -23,7 +23,9 @@ count=0
 
 for file in ${dir}/$ext; do
 	if [ "$file" != "${dir}/$ext" ]; then
-		(( count++ ))
+		if [ ! -d "$file" ]; then
+			(( count++ ))
+		fi
 	fi
 done
 
