@@ -8,10 +8,10 @@ if [ $# -eq 0 ]; then
 	exit $exit_code
 else
 	dir=$1;
-	if [ ! -r "$dir" ]; then
+	if [ ! -d "$dir" ]; then
 		exit $exit_code
-	#elif [ ! -r "$dir" ]; then
-	#	exit $exit_code
+	elif [ ! -r "$dir" ]; then
+		exit $exit_code
 	fi
 
 	if [ $# -gt 1 ]; then
