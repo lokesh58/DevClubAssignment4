@@ -30,6 +30,9 @@ while read num op; do
 		"/")
 			ans=$((ans/num))
 			;;
+		*)
+			exit $exit_code
+			;;
 	esac
 done < $file
 
