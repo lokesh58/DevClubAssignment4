@@ -19,3 +19,13 @@ if [ ! -d "$dir2" -o ! -r "$dir2" ]; then
 	exit $exit_code
 fi
 
+declare -a dir1todir2
+declare -a dir2todir1
+
+for file in $dir1/*; do
+	echo "$file"
+done
+
+for file in $dir2/*; do
+	echo "$file"
+done
