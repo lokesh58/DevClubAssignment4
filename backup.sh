@@ -34,6 +34,9 @@ cpdir1todir2() {
 	cd $1
 	for file in *; do
 		if [ "$file" == "*" ]; then
+			if [ $# -eq 3 ]; then
+				echo "$3/"
+			fi
 			return
 		fi
 		if [ -d "$file" ]; then
